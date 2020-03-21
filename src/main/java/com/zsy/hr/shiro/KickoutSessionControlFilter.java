@@ -22,10 +22,10 @@ import java.util.LinkedList;
 import java.util.Map;
 
 /**
- * @Classname KickoutSessionControlFilter
+ * @Classname LoginController
  * @Description TODO
- * @Date 2020/3/21 15:35
- * @Created by Yinghao.He
+ * @Date 2020/3/21 16:05
+ * @Created by yuan
  */
 public class KickoutSessionControlFilter extends AccessControlFilter {
     private String kickoutUrl; //踢出后到的地址

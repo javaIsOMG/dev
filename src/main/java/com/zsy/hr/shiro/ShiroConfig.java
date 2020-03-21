@@ -18,10 +18,10 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
- * @Classname ShiroConfig
+ * @Classname LoginController
  * @Description TODO
- * @Date 2020/3/21 15:27
- * @Created by Yinghao.He
+ * @Date 2020/3/21 16:05
+ * @Created by yuan
  */
 @Configuration
 public class ShiroConfig {

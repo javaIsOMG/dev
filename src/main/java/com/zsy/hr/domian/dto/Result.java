@@ -5,10 +5,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * @Classname Result
+ * @Classname LoginController
  * @Description TODO
- * @Date 2020/3/21 16:14
- * @Created by Yinghao.He
+ * @Date 2020/3/21 16:05
+ * @Created by yuan
  */
 @Data
 @AllArgsConstructor

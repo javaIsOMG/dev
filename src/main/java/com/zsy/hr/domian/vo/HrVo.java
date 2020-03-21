@@ -7,10 +7,10 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 
 /**
- * @Classname HrDto
+ * @Classname LoginController
  * @Description TODO
- * @Date 2020/3/21 16:07
- * @Created by Yinghao.He
+ * @Date 2020/3/21 16:05
+ * @Created by yuan
  */
 @Data
 @AllArgsConstructor
