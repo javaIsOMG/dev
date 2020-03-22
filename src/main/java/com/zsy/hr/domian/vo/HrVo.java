@@ -17,6 +17,6 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class HrVo implements Serializable {
     private static final long serialVersionUID = -1749756244328275928L;
-    private String userName;
+    private String username;
     private String password;
 }

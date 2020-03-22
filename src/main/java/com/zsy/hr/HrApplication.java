@@ -4,7 +4,7 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@MapperScan("/mapper")
+@MapperScan("com.zsy.hr.mapper")
 @SpringBootApplication
 public class HrApplication {
 

@@ -1,6 +1,7 @@
 package com.zsy.hr.shiro;
 
 import com.zsy.hr.domian.vo.HrVo;
+import com.zsy.hr.exception.EnterException;
 import com.zsy.hr.service.LoginService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authc.*;
@@ -32,11 +33,15 @@ public class ShiroRealm extends AuthorizingRealm {
         String username=token.getUsername();
         HrVo hrvo=loginService.GetUserNamePassword(username);
         if(hrvo!=null){
-            SimpleAuthenticationInfo info=new SimpleAuthenticationInfo( hrvo.getUserName(),hrvo.getPassword() ,getName());
-            return info;
+            if(hrvo.getPassword().equals( token.getPassword() )){
+                SimpleAuthenticationInfo info=new SimpleAuthenticationInfo( hrvo.getUsername(),hrvo.getPassword() ,getName());
+                return info;
+            }
+            throw new AuthenticationException("密码错误");
+
         }else{
             System.out.println("======不存在该用户=========>");
-            throw new UnknownAccountException("不存在该用户");
+            throw new AuthenticationException("不存在该用户");
         }
     }
 }

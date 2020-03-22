@@ -24,6 +24,9 @@
     from hr
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="getPassword"  resultType="java.lang.String" parameterType="java.lang.String">
+    select password from hr where username = #{username,jdbcType=VARCHAR}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from hr
     where id = #{id,jdbcType=INTEGER}

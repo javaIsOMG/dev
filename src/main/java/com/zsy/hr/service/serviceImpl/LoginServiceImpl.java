@@ -20,7 +20,7 @@ public class LoginServiceImpl implements LoginService {
     @Override
     public HrVo GetUserNamePassword(String username) {
         HrVo hrvo=new HrVo();
-        hrvo.setUserName(username);
+        hrvo.setUsername(username);
         if(hrMapper.getPassword(username)!=null) {
             hrvo.setPassword(hrMapper.getPassword(username));
             return hrvo;
