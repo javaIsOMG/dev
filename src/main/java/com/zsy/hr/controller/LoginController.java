@@ -2,6 +2,7 @@ package com.zsy.hr.controller;
 
 import com.zsy.hr.domian.dto.Result;
 import com.zsy.hr.domian.vo.HrVo;
+import com.zsy.hr.service.LoginService;
 import com.zsy.hr.util.ResultCode;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
@@ -9,6 +10,7 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,6 +28,9 @@ import javax.validation.Valid;
 @Api
 @RestController
 public class LoginController {
+    @Autowired
+    LoginService loginService;
+
     @RequestMapping(value = "/doLogin",method = RequestMethod.POST)
     public Result login(@Valid HrVo hrVo){
         Subject subject= SecurityUtils.getSubject();
@@ -40,6 +45,6 @@ public class LoginController {
             log.info(message);
             return Result.fail(message);
         }
-        return Result.ok();
+        return Result.ok(loginService.GetUserName( hrVo.getUsername() ) );
     }
 }

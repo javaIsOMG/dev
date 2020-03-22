@@ -17,4 +17,6 @@ public interface HrMapper {
     int updateByPrimaryKey(Hr record);
 
     String getPassword(String username);
+
+    Hr findUsername(String username);
 }

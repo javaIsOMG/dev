@@ -14,18 +14,17 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Result<T> {
-    private Integer code;
-    private String message;
-    private T domain;
+    private String msg;
+    private T obj;
+    private Integer status;
     private static Result setOk(){
         Result<Object> result = new Result<>();
-        result.setCode(200);
-        result.setMessage("ok");
+        result.setStatus(200);
+        result.setMsg("登录成功");
         return result;
     }
     private static Result setFail(){
         Result<Object> result = new Result<>();
-        result.setCode(500);
         return result;
     }
     public static Result ok(){
@@ -33,17 +32,17 @@ public class Result<T> {
     }
     public static Result ok(Object domain){
         Result result = setOk();
-        result.setDomain(domain);
+        result.setObj(domain);
         return result;
     }
     public static Result fail(){
         Result result = setFail();
-        result.setMessage("fail");
+        result.setMsg("fail");
         return result;
     }
     public static Result fail(String message){
         Result result = setFail();
-        result.setMessage(message);
+        result.setMsg(message);
         return result;
     }
 

@@ -1,6 +1,6 @@
 package com.zsy.hr.service;
 
-import com.zsy.hr.domian.vo.HrVo;
+import com.zsy.hr.domian.po.Hr;
 
 /**
  * @Classname LoginController
@@ -9,5 +9,5 @@ import com.zsy.hr.domian.vo.HrVo;
  * @Created by yuan1
  */
 public interface LoginService {
-    public HrVo GetUserNamePassword(String userName);
+    public Hr GetUserName(String username);
 }

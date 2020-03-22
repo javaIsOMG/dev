@@ -1,5 +1,6 @@
 package com.zsy.hr.service.serviceImpl;
 
+import com.zsy.hr.domian.po.Hr;
 import com.zsy.hr.domian.vo.HrVo;
 import com.zsy.hr.mapper.HrMapper;
 import com.zsy.hr.service.LoginService;
@@ -18,12 +19,10 @@ public class LoginServiceImpl implements LoginService {
     HrMapper hrMapper;
 
     @Override
-    public HrVo GetUserNamePassword(String username) {
-        HrVo hrvo=new HrVo();
-        hrvo.setUsername(username);
+    public Hr GetUserName(String username) {
         if(hrMapper.getPassword(username)!=null) {
-            hrvo.setPassword(hrMapper.getPassword(username));
-            return hrvo;
+            Hr hr=hrMapper.findUsername(username);
+            return hr;
         }
         return null;
     }
