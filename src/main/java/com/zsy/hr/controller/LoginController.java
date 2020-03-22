@@ -22,7 +22,7 @@ import javax.validation.Valid;
  * @Classname LoginController
  * @Description TODO
  * @Date 2020/3/21 16:05
- * @Created by yuan1
+ * @Created by yuan
  */
 @Slf4j
 @Api
