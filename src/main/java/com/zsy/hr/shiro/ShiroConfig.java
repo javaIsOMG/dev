@@ -21,7 +21,7 @@ import java.util.Map;
  * @Classname LoginController
  * @Description TODO
  * @Date 2020/3/21 16:05
- * @Created by yuan
+ * @Created by yuan1
  */
 @Configuration
 public class ShiroConfig {

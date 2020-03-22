@@ -14,7 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @Classname LoginController
  * @Description TODO
  * @Date 2020/3/21 16:05
- * @Created by yuan
+ * @Created by yuan1
  */
 @Slf4j
 public class ShiroRealm extends AuthorizingRealm {
