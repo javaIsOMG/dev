@@ -14,6 +14,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Result<T> {
+    private Long total;
     private String msg;
     private T obj;
     private Integer status;
@@ -32,6 +33,14 @@ public class Result<T> {
     }
     public static Result ok(Object domain){
         Result result = setOk();
+        result.setObj(domain);
+        return result;
+    }
+    public static Result ok(Object domain,int total){
+        Result result = setOk();
+        Integer integer = new Integer(total);
+        integer.longValue();
+        result.setTotal(new Long(integer));
         result.setObj(domain);
         return result;
     }
