@@ -28,6 +28,14 @@
     delete from menu
     where id = #{id,jdbcType=INTEGER}
   </delete>
+  <select id="getMeuButton" resultMap="BaseResultMap" >
+    select DISTINCT
+    a.id,a.url,a.path,a.component, a.name, a.iconCls,a. keepAlive, a.requireAuth,a. parentId, a.enabled
+    from menu a,menu_role b where b.mid=a.id AND b.rid in
+    <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+          #{item}
+      </foreach>
+  </select>
   <insert id="insert" parameterType="com.zsy.hr.domian.po.Menu" >
     insert into menu (id, url, path, 
       component, name, iconCls, 

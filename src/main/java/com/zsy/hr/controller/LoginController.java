@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 
@@ -32,7 +34,8 @@ public class LoginController {
     LoginService loginService;
 
     @RequestMapping(value = "/doLogin",method = RequestMethod.POST)
-    public Result login(@Valid HrVo hrVo){
+    public Result login(@Valid HrVo hrVo, HttpServletResponse httpResponse){
+
         Subject subject= SecurityUtils.getSubject();
         UsernamePasswordToken usernamePasswordToken=new UsernamePasswordToken();
         usernamePasswordToken.setUsername(hrVo.getUsername());
@@ -44,7 +47,10 @@ public class LoginController {
             String message = e.getMessage();
             log.info(message);
             return Result.fail(message);
-        }
-        return Result.ok(loginService.GetUserName( hrVo.getUsername() ) );
+        };
+        Cookie cookie = new Cookie("token",hrVo.getUsername());
+        cookie.setMaxAge(1800);
+        httpResponse.addCookie(cookie);
+        return Result.ok( loginService.GetUserData(hrVo.getUsername()) );//超时未处理
     }
 }
