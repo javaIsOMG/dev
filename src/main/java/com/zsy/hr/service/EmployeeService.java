@@ -14,4 +14,10 @@ import java.util.Date;
 public interface EmployeeService {
 
     public Result getEmployeeInfo(Integer page, Integer size, Employee employee, Date[] beginDateScope);
+
+    int addEmp(Employee employee);
+
+    Result deleteEmployeed(Integer id);
+
+    Result upDataEmp(Employee employee);
 }

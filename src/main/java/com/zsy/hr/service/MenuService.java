@@ -12,5 +12,5 @@ import java.util.List;
  */
 public interface MenuService {
 
-    Result getButton(List<Integer> hid);
+    Result getButton(String username);
 }

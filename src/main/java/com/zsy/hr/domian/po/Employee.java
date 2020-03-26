@@ -1,7 +1,10 @@
 package com.zsy.hr.domian.po;
 
-import java.util.Date;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Data;
 
+import java.util.Date;
+@Data
 public class Employee {
     private Integer id;
 
@@ -48,13 +51,13 @@ public class Employee {
     private String workid;
 
     private Double contractterm;
-
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "Asia/Shanghai")
     private Date conversiontime;
 
     private Date notworkdate;
-
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "Asia/Shanghai")
     private Date begincontract;
-
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "Asia/Shanghai")
     private Date endcontract;
 
     private Integer workage;

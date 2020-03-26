@@ -50,4 +50,16 @@ pagehelper:
   upportMethodsArguments: true
   supportMethodsArguments: true
   params: count,countSql
-
+kafka:
+  producer:
+    bootstrap-servers: kafka-1:9092
+    key-serializer: org.apache.kafka.common.serialization.StringSerializer
+    value-serializer: org.apache.kafka.common.serialization.StringSerializer
+  consumer:
+    bootstrap-servers: kafka-1:9092
+    group-id: ssm-secounds-kill
+    auto-offset-reset: earliest
+    key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    topic: test
+    thread: 3
