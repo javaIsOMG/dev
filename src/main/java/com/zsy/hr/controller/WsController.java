@@ -1,13 +1,14 @@
 package com.zsy.hr.controller;
 
+import com.zsy.hr.domian.dto.ChatMsg;
 import com.zsy.hr.domian.po.Hr;
-import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
-
-import java.security.Principal;
+import java.util.Date;
 
 /**
  * @program: hr
@@ -21,8 +22,7 @@ public class WsController {
     SimpMessagingTemplate messagingTemplate;
 
     @MessageMapping("/ws/chat")
-    public void handleMsg(Authentication authentication, ChatMsg chatMsg) {
-        Hr hr = (Hr) authentication.getPrincipal();
+    public void handleMsg(Hr hr, ChatMsg chatMsg) {
         chatMsg.setFrom(hr.getUsername());
         chatMsg.setFromNickname(hr.getName());
         chatMsg.setDate(new Date());

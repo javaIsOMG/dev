@@ -24,8 +24,9 @@ import java.util.List;
 public class EmployeeServiceImpl implements EmployeeService {
     @Autowired
     private EmployeeMapper employeeMapper;
-    @Autowired
-    private KafkaTemplate<String,String> kafkaTemplate;
+//    @Autowired
+//    private KafkaTemplate<String,String> kafkaTemplate;
+
     SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy");
     SimpleDateFormat monthFormat = new SimpleDateFormat("MM");
     DecimalFormat decimalFormat = new DecimalFormat("##.00");
