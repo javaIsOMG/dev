@@ -1,15 +1,12 @@
 package com.zsy.hr.shiro;
 
-import ch.qos.logback.core.joran.util.beans.BeanUtil;
 import com.zsy.hr.domian.dto.Result;
 import com.zsy.hr.domian.dto.RolesDto;
 import com.zsy.hr.domian.dto.UserData;
-import com.zsy.hr.domian.dto.UserDataDto;
 import com.zsy.hr.domian.po.Hr;
 import com.zsy.hr.domian.po.Role;
 import com.zsy.hr.service.LoginService;
 import com.zsy.hr.util.RedisUtil;
-import io.netty.util.Timeout;
 import lombok.extern.slf4j.Slf4j;
 
 import org.apache.shiro.authc.*;
@@ -69,7 +66,7 @@ public class ShiroRealm extends AuthorizingRealm {
         String username = token.getUsername();
         Hr userData = loginService.GetUserName(username);
 
-        UserData userData1 = new UserDataDto();
+        UserData userData1 = new UserData();
         BeanUtils.copyProperties(userData, userData1);
 
         if (userData != null) {

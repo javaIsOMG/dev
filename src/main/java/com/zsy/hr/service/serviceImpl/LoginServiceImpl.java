@@ -2,11 +2,7 @@ package com.zsy.hr.service.serviceImpl;
 
 import com.zsy.hr.domian.dto.RolesDto;
 import com.zsy.hr.domian.dto.UserData;
-import com.zsy.hr.domian.dto.UserDataDto;
 import com.zsy.hr.domian.po.Hr;
-import com.zsy.hr.domian.po.HrRole;
-import com.zsy.hr.domian.po.Role;
-import com.zsy.hr.domian.vo.HrVo;
 import com.zsy.hr.mapper.HrMapper;
 import com.zsy.hr.mapper.HrRoleMapper;
 import com.zsy.hr.mapper.RoleMapper;
@@ -56,7 +52,7 @@ public class LoginServiceImpl implements LoginService {
 
     @Override
     public UserData GetUserData(String username) {
-        UserDataDto userData= (UserDataDto) redisUtils.get(username);
+        UserData userData= (UserData) redisUtils.get(username);
         return userData;
     }
 
