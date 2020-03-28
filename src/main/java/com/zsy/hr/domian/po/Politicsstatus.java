@@ -1,20 +1,21 @@
 package com.zsy.hr.domian.po;
 
-public class Nation {
+public class Politicsstatus {
     private Integer id;
 
     private String name;
 
-    public Nation(Integer id,String name) {
-        this.name = name;
-        this.id=id;
-    }
-
-    public Nation(String name) {
+    public Politicsstatus(Integer id, String name) {
+        this.id = id;
         this.name = name;
     }
 
-    public Nation() {
+    public Politicsstatus(){
+
+    }
+
+    public Politicsstatus(String cellValue) {
+        super();
     }
 
     public Integer getId() {

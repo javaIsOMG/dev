@@ -1,8 +1,10 @@
 package com.zsy.hr.controller;
 
+import com.zsy.hr.domian.dto.RespPageBean;
 import com.zsy.hr.domian.dto.Result;
 import com.zsy.hr.domian.po.*;
 import com.zsy.hr.service.*;
+import com.zsy.hr.util.POIUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -37,29 +39,34 @@ public class EmployeeController {
     @Autowired
     DepartmentService departmentService;
 
-    @RequestMapping(value = "/",method = RequestMethod.GET)
-    public Result getEmployeeInfo(@RequestParam(defaultValue = "1")Integer page,
-                                  @RequestParam(defaultValue = "10")Integer size,
-                                  @Valid Employee employee,
-                                   Date[] beginDateScope){
-        return employeeService.getEmployeeInfo(page,size,employee,beginDateScope);
+    @GetMapping("/")
+    public RespPageBean getEmployeeByPage(@RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer size, Employee employee, Date[] beginDateScope) {
+        return employeeService.getEmployeeByPage(page, size, employee,beginDateScope);
     }
+
     @PostMapping("/")
     public Result addEmp(@RequestBody Employee employee) {
         if (employeeService.addEmp(employee) == 1) {
-            return Result.ok();
+            return Result.ok("添加成功!");
         }
-        return Result.fail("添加失败!");
-    }
-    @RequestMapping(value = "/{id}",method = RequestMethod.DELETE)
-    public Result deleteEmployee(@PathVariable Integer id){
-        return employeeService.deleteEmployeed(id);
-    }
-    @RequestMapping(value = "/",method = RequestMethod.PUT)
-    public Result upDataEmp(@RequestBody Employee employee){
-        return employeeService.upDataEmp(employee);
+        return Result.ok("添加失败!");
     }
 
+    @DeleteMapping("/{id}")
+    public Result deleteEmpByEid(@PathVariable Integer id) {
+        if (employeeService.deleteEmpByEid(id) == 1) {
+            return Result.ok("删除成功!");
+        }
+        return Result.ok("删除失败!");
+    }
+
+    @PutMapping("/")
+    public Result updateEmp(@RequestBody Employee employee) {
+        if (employeeService.updateEmp(employee) == 1) {
+            return Result.ok("更新成功!");
+        }
+        return Result.ok("更新失败!");
+    }
 
     @GetMapping("/nations")
     public List<Nation> getAllNations() {
@@ -82,10 +89,8 @@ public class EmployeeController {
     }
 
     @GetMapping("/maxWorkID")
-    public RespBean maxWorkID() {
-        RespBean respBean = RespBean.build().setStatus(200)
-                .setObj(String.format("%08d", employeeService.maxWorkID() + 1));
-        return respBean;
+    public Result maxWorkID() {
+        return Result.ok(String.format("%08d", employeeService.maxWorkID() + 1) );
     }
 
     @GetMapping("/deps")
@@ -100,12 +105,12 @@ public class EmployeeController {
     }
 
     @PostMapping("/import")
-    public RespBean importData(MultipartFile file) throws IOException {
-        List<Employee> list = POIUtils.excel2Employee(file, NationService.getAllNations(), politicsstatusService.getAllPoliticsstatus(), departmentService.getAllDepartmentsWithOutChildren(), positionService.getAllPositions(), jobLevelService.getAllJobLevels());
+    public Result importData(MultipartFile file) throws IOException {
+        List<Employee> list = POIUtils.excel2Employee(file, nationService.getAllNations(), politicsstatusService.getAllPoliticsstatus(), departmentService.getAllDepartmentsWithOutChildren(), positionService.getAllPositions(), jobLevelService.getAllJobLevels());
         if (employeeService.addEmps(list) == list.size()) {
-            return RespBean.ok("上传成功");
+            return Result.ok("上传成功");
         }
-        return RespBean.error("上传失败");
+        return Result.ok("上传失败");
     }
 
 }

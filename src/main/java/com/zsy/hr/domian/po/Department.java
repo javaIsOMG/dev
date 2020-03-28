@@ -1,5 +1,8 @@
 package com.zsy.hr.domian.po;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Department {
     private Integer id;
 
@@ -13,6 +16,8 @@ public class Department {
 
     private Boolean isparent;
 
+    private List<Department> children = new ArrayList<>();
+
     public Department(Integer id, String name, Integer parentid, String deppath, Boolean enabled, Boolean isparent) {
         this.id = id;
         this.name = name;
@@ -22,7 +27,11 @@ public class Department {
         this.isparent = isparent;
     }
 
-    public Department() {
+    public Department(){
+
+    }
+
+    public Department(String cellValue) {
         super();
     }
 
