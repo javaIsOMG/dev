@@ -47,25 +47,25 @@ public class EmployeeController {
     @PostMapping("/")
     public Result addEmp(@RequestBody Employee employee) {
         if (employeeService.addEmp(employee) == 1) {
-            return Result.ok("添加成功!");
+            return Result.ok("","添加成功!",200);
         }
-        return Result.ok("添加失败!");
+        return Result.ok("","添加失败!",200);
     }
 
     @DeleteMapping("/{id}")
     public Result deleteEmpByEid(@PathVariable Integer id) {
         if (employeeService.deleteEmpByEid(id) == 1) {
-            return Result.ok("删除成功!");
+            return Result.ok("","删除成功!",200);
         }
-        return Result.ok("删除失败!");
+        return Result.ok("","删除失败!",200);
     }
 
     @PutMapping("/")
     public Result updateEmp(@RequestBody Employee employee) {
         if (employeeService.updateEmp(employee) == 1) {
-            return Result.ok("更新成功!");
+            return Result.ok("","更新成功!",200);
         }
-        return Result.ok("更新失败!");
+        return Result.ok("更新失败!",200);
     }
 
     @GetMapping("/nations")
@@ -108,9 +108,9 @@ public class EmployeeController {
     public Result importData(MultipartFile file) throws IOException {
         List<Employee> list = POIUtils.excel2Employee(file, nationService.getAllNations(), politicsstatusService.getAllPoliticsstatus(), departmentService.getAllDepartmentsWithOutChildren(), positionService.getAllPositions(), jobLevelService.getAllJobLevels());
         if (employeeService.addEmps(list) == list.size()) {
-            return Result.ok("上传成功");
+            return Result.ok("","上传成功",200);
         }
-        return Result.ok("上传失败");
+        return Result.ok("","上传失败",200);
     }
 
 }

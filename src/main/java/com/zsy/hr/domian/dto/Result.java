@@ -21,7 +21,12 @@ public class Result<T> {
     private static Result setOk(){
         Result<Object> result = new Result<>();
         result.setStatus(200);
-        result.setMsg("登录成功");
+        return result;
+    }
+    private static Result setOk(String msg,Integer sta){
+        Result<Object> result = new Result<>();
+        result.setStatus(sta);
+        result.setMsg(msg);
         return result;
     }
     private static Result setFail(){
@@ -30,6 +35,11 @@ public class Result<T> {
     }
     public static Result ok(){
         return setOk();
+    }
+    public static Result ok(Object domain,String msg,Integer sta){
+        Result result = setOk(msg, sta);
+        result.setObj(domain);
+        return result;
     }
     public static Result ok(Object domain){
         Result result = setOk();

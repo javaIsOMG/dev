@@ -51,6 +51,7 @@ public class LoginController {
         Cookie cookie = new Cookie("token",hrVo.getUsername());
         cookie.setMaxAge(1800);
         httpResponse.addCookie(cookie);
-        return Result.ok( loginService.GetUserData(hrVo.getUsername()) );//超时未处理
+        return Result.ok( loginService.GetUserData(hrVo.getUsername()),"登录成功",200 );//超时未处理
     }
+
 }
